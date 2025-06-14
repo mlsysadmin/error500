@@ -1,0 +1,72 @@
+#---------------------------------------------------------------DEPLOYMENT---------------------------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: error
+  namespace: app-net
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: error-app
+  template:
+    metadata:
+      labels:
+        app: error-app
+    spec:
+      containers:
+      - name: error-cont
+        image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:1.2
+        ports:
+        - containerPort: 9001
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2"
+          limits:
+            memory: "4Gi"
+            cpu: "2"
+      imagePullSecrets:
+      - name: error-secret
+#------------------------------------------------------------------SERVICE---------------------------------------------------------------------------------------------
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: error-service
+  namespace: app-net
+spec:
+  selector:
+    app: error-app
+  ports:
+  - name: http
+    port: 80
+    targetPort: 9001
+  type: ClusterIP
+#-------------------------------------------------------------------INGRESS--------------------------------------------------------------------------------------------
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: error-ingress
+#  namespace: app-net
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#spec:
+#  ingressClassName: nginx
+#  tls:
+#    - hosts:
+#        - oscar.mlhuillier.com
+#      secretName: com-tls
+#  rules:
+#    - host: oscar.mlhuillier.com
+#      http:
+#        paths:
+#          - path: /error-500
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: error-service
+#                port:
+#                  number: 80
