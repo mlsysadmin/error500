@@ -12,4 +12,4 @@ render:
     region: asia-southeast1
     serviceName: demo-demo
     container:
-      image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error@sha256:cd2930f41d6069822f2e38c3c32c4fa55e5096c58019c340726426de96a3e2d1
+      image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest
