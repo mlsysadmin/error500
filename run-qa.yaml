@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        run.googleapis.com/vpc-access-connector: "projects/ml-sandbox-project/locations/asia-southeast1/connectors/mlfsi-qa-serverless-ip"
+        run.googleapis.com/vpc-access-connector: "${VPC_CONNECTOR}"
         run.googleapis.com/ingress: "internal-only"
     spec:
       containers:
