@@ -1,15 +1,1 @@
-apiVersion: skaffold/v2beta30
-kind: Config
-metadata:
-  name: demo
-deploy:
-  kubectl:
-    manifests:
-      - k8s/placeholder.yaml
-render:
-  cloudrun:
-    projectId: ml-sandbox-project
-    region: asia-southeast1
-    serviceName: demo-demo
-    container:
-      image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest
+
