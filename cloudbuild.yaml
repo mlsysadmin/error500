@@ -1,0 +1,31 @@
+steps:
+  # 1. Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', '-t',
+      'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest',
+      '.'
+    ]
+
+  # 2. Push image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest''
+    ]
+
+  # 3. Deploy to Cloud Deploy as a new release
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'deploy', 'releases', 'create', 'release-$(date +%Y%m%d%H%M%S)',
+        '--delivery-pipeline=dev-qa-prod',
+        '--region=asia-southeast1',
+        '--images=myapp=asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest',
+        '--source=.',
+        '--skaffold-file=skaffold.yaml',
+        '--skaffold-version=2.16.1'
+      ]
+
+images:
+  - 'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest''
