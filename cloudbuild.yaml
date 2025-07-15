@@ -19,7 +19,7 @@ steps:
     args:
       [
         'deploy', 'releases', 'create', 'release-$(date +%Y%m%d%H%M%S)',
-        '--delivery-pipeline=dev-qa-prod',
+        '--delivery-pipeline=dev-qa-preprod-prod',
         '--region=asia-southeast1',
         '--images=myapp=asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest',
         '--source=.',
