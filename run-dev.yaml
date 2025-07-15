@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/vpc-access-connector: "projects/ml-sandbox-project/locations/asia-southeast1/connectors/mlfsi-dev-serverless-ip"
+        run.googleapis.com/ingress: "internal-only"
+    spec:
+      containers:
+        - image: IMAGE_PLACEHOLDER
