@@ -2,10 +2,14 @@ apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
   name: error-pipeline
-description: Pipeline for progressive rollout from dev to prod
+description: Deploy to dev, qa, preprod, and prod
 serialPipeline:
   stages:
     - targetId: dev
+      profiles: []
     - targetId: qa
+      profiles: []
     - targetId: preprod
-    - targetId: prod
+      profiles: []
+    - targetId: production
+      profiles: []
