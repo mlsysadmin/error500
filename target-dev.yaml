@@ -2,7 +2,9 @@ apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: dev
-description: dev environment
+description: Dev environment
+gke:
+  cluster: projects/YOUR_PROJECT_ID/locations/YOUR_REGION/clusters/YOUR_CLUSTER_NAME
+  # Or use Cloud Run instead
 run:
   location: asia-southeast1
-  project: mlfsi-jupiter-apollo
