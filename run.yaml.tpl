@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-      - image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error:${COMMIT_SHA}
+      - image: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:${COMMIT_SHA}
         env:
         - name: ENV
           value: ${TARGET_ID}  # Tells app what environment it’s running in (dev, qa, etc.)
