@@ -1,0 +1,8 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+description: Dev Environment
+run:
+  location: asia-southeast1
+  project: mlfsi-jupiter-apollo
