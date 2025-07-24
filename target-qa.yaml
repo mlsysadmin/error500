@@ -1,0 +1,8 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: qa
+description: qa environment
+run:
+  location: asia-southeast1
+  project: mlfsi-polaris-celestino
