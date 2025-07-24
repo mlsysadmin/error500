@@ -1,0 +1,8 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: preprod
+description: preprod environment
+run:
+  location: asia-southeast1
+  project: mlfsi-altair-phoenix
