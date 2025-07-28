@@ -2,7 +2,12 @@ apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: qa
-description: qa environment
-run:
-  location: asia-southeast1
-  project: mlfsi-polaris-celestino
+  annotations:
+    deploy.cloud.google.com/target-project: mlfsi-polaris-celestino
+  labels:
+    environment: qa
+spec:
+  run:
+    location: asia-southeast1
+  render:
+    renderEngine: CLOUD_DEPLOY
