@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-      - image: ${IMAGE}  # <-- Fully dynamic image
+      - image: {{ .IMAGE }}
         env:
         - name: ENV
           value: ${TARGET_ID}
