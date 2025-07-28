@@ -1,8 +1,13 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: prod
-description: prod environment
-run:
-  location: asia-southeast1
-  project: mlfsi-astrid-taurus
+  name: production
+  annotations:
+    deploy.cloud.google.com/target-project: mlfsi-astrid-taurus
+  labels:
+    environment: production
+spec:
+  run:
+    location: asia-southeast1
+  render:
+    renderEngine: CLOUD_DEPLOY
