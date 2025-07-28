@@ -1,17 +1,12 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: error-pipeline-${TARGET_ID}
+  name: error-{{ .DEPLOY_REGION }}
   namespace: default
 spec:
   template:
     spec:
       containers:
-      - image: {{ .IMAGE }}
-        env:
-        - name: ENV
-          value: ${TARGET_ID}
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "1000m"
+        - image: {{ .IMAGE }}
+          ports:
+            - containerPort: 9001
