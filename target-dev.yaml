@@ -1,7 +1,14 @@
-name: dev
-targetId: dev
-gke:
-  location: asia-southeast1
-  cluster: development-cluster
-render:
-  renderEngine: CLOUD_DEPLOY
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+  description: Development environment
+  annotations:
+    deploy.cloud.google.com/target-project: mlfsi-jupiter-apollo
+  labels:
+    environment: dev
+spec:
+  run:
+    location: asia-southeast1
+  render:
+    renderEngine: CLOUD_DEPLOY
