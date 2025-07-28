@@ -1,31 +1,23 @@
 steps:
-  # 1. Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build', '-t',
-      'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest',
-      '.'
-    ]
+    args: ['build', '-t', '${_IMAGE}', '.']
 
-  # 2. Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'push',
-      'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest''
-    ]
+    args: ['push', '${_IMAGE}']
 
-  # 3. Deploy to Cloud Deploy as a new release
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
     args:
-      [
-        'deploy', 'releases', 'create', 'release-$(date +%Y%m%d%H%M%S)',
-        '--delivery-pipeline=dev-qa-preprod-prod',
-        '--region=asia-southeast1',
-        '--images=myapp=asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest',
-        '--source=.',
-        '--skaffold-file=skaffold.yaml',
-        '--skaffold-version=2.16.1'
-      ]
-
+      - deploy
+      - releases
+      - create
+      - error-app-release-${BUILD_ID}
+      - --delivery-pipeline=error-app-pipeline
+      - --region=us-central1
+      - --images=IMAGE=${_IMAGE}
+      - --skaffold-file=skaffold.yaml
+      - --source=.
+substitutions:
+  _IMAGE: gcr.io/YOUR_PROJECT_ID/error/error:${SHORT_SHA}
 images:
-  - 'asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:latest''
+  - gcr.io/YOUR_PROJECT_ID/error/error:${SHORT_SHA}
