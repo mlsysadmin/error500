@@ -18,7 +18,7 @@ steps:
       - --skaffold-file=skaffold.yaml
       - --source=.
 substitutions:
-  _IMAGE: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:${SHORT_SHA}
+  _IMAGE: asia-southeast1-docker.pkg.dev/mlfsi-jupiter-apollo/error/error:${SHORT_SHA}
 
 images:
-  - asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:${SHORT_SHA}
+  - asia-southeast1-docker.pkg.dev/mlfsi-jupiter-apollo/error/error:${SHORT_SHA}
