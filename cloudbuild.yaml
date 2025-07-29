@@ -13,11 +13,12 @@ steps:
       - create
       - error-app-release-${BUILD_ID}
       - --delivery-pipeline=error-app-pipeline
-      - --region=us-central1
-      - --images=IMAGE=${_IMAGE}
+      - --region=asia-southeast1
+      - --images=image=${_IMAGE}
       - --skaffold-file=skaffold.yaml
       - --source=.
 substitutions:
-  _IMAGE: gcr.io/YOUR_PROJECT_ID/error/error:${SHORT_SHA}
+  _IMAGE: asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:${SHORT_SHA}
+
 images:
-  - gcr.io/YOUR_PROJECT_ID/error/error:${SHORT_SHA}
+  - asia-southeast1-docker.pkg.dev/ml-sandbox-project/error/error:${SHORT_SHA}
