@@ -1,0 +1,13 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: qa
+  location: asia-southeast1
+run:
+  # ✅ Correct project where QA should deploy
+  location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
+executionConfigs:
+- usages: [RENDER, DEPLOY]
+  serviceAccount: projects/mlfsi-polaris-celestino/serviceAccounts/376318511165-compute@developer.gserviceaccount.com
+  skaffoldConfigFilePath: skaffold.yaml
+  skaffoldProfiles: ["qa"]
