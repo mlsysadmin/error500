@@ -2,10 +2,13 @@ apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
   name: error-pipeline
-description: Pipeline for cross-project Cloud Run deploys
-serialPipeline:
-  stages:
-  - targetId: dev
-  - targetId: qa
-  - targetId: preprod
-  - targetId: prod
+spec:
+  targets:
+    - targetId: dev
+      ...
+    - targetId: qa
+      ...
+    - targetId: preprod
+      ...
+    - targetId: production
+      ...
