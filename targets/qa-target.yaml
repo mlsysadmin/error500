@@ -6,7 +6,7 @@ metadata:
     deploy.cloud.google.com/location: asia-southeast1  # Must go in annotations, not metadata.location
 spec:
   run:
-    location: asia-southeast1  # Region where Cloud Run service will be deployed
+    location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
   executionConfigs:
     - usages: [RENDER, DEPLOY]
       serviceAccount: projects/mlfsi-polaris-celestino/serviceAccounts/id-052277425-mlloan-sa@mlfsi-polaris-celestino.iam.gserviceaccount.com
