@@ -3,13 +3,12 @@ kind: Target
 metadata:
   name: dev
   annotations:
-    deploy.cloud.google.com/location: asia-southeast1
+    deploy.cloud.google.com/location: asia-southeast1  # Must go in annotations, not metadata.location
 spec:
   run:
-    location: asia-southeast1
+    location: asia-southeast1  # Region where Cloud Run service will be deployed
   executionConfigs:
-    - usages:
-        - RENDER
-        - DEPLOY
-      serviceAccount: 376318511165-compute@developer.gserviceaccount.com
-      project: mlfsi-jupiter-apollo
+    - usages: [RENDER, DEPLOY]
+      serviceAccount: projects/mlfsi-jupiter-apollo/serviceAccounts/376318511165-compute@developer.gserviceaccount.com
+      skaffoldConfigFilePath: skaffold.yaml
+      skaffoldProfiles: ["dev"]
