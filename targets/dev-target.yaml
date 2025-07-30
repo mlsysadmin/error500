@@ -1,0 +1,15 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+  annotations:
+    deploy.cloud.google.com/location: asia-southeast1
+spec:
+  run:
+    location: asia-southeast1
+  executionConfigs:
+    - usages:
+        - RENDER
+        - DEPLOY
+      serviceAccount: 376318511165-compute@developer.gserviceaccount.com
+      project: mlfsi-jupiter-apollo
