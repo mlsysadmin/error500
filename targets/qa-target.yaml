@@ -2,13 +2,12 @@ apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: qa
-  annotations:
-    deploy.cloud.google.com/location: asia-southeast1  # Must go in annotations, not metadata.location
-spec:
-  run:
-    location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
-  executionConfigs:
-    - usages: [RENDER, DEPLOY]
-      serviceAccount: projects/mlfsi-polaris-celestino/serviceAccounts/id-052277425-mlloan-sa@mlfsi-polaris-celestino.iam.gserviceaccount.com
-      skaffoldConfigFilePath: skaffold.yaml
-      skaffoldProfiles: ["qa"]
+  location: asia-southeast1
+description: QA environment in celestino project
+run:
+  location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
+executionConfigs:
+- usages: [RENDER, DEPLOY]
+  serviceAccount: projects/mlfsi-polaris-celestino/serviceAccounts/376318511165-compute@developer.gserviceaccount.com
+  skaffoldConfigFilePath: skaffold.yaml
+  skaffoldProfiles: ["qa"]
