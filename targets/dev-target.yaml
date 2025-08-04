@@ -9,6 +9,6 @@ spec:
     location: asia-southeast1  # Region where Cloud Run service will be deployed
   executionConfigs:
     - usages: [RENDER, DEPLOY]
-      serviceAccount: projects/mlfsi-jupiter-apollo/serviceAccounts/376318511165-compute@developer.gserviceaccount.com
+      serviceAccount: projects/mlfsi-jupiter-apollo/serviceAccounts/id-29080125-clouddeploy-sa@mlfsi-jupiter-apollo.iam.gserviceaccount.com
       skaffoldConfigFilePath: skaffold.yaml
       skaffoldProfiles: ["dev"]
