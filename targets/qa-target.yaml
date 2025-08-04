@@ -1,10 +1,11 @@
-# qa-target.yaml (run in QA project)
+cat <<EOF > qa-target.yaml
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: qa
   labels:
     environment: qa
-description: mlfsi-polaris-celestino
+description: qa
 run:
   location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
+EOF
