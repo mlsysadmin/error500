@@ -2,13 +2,18 @@ apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
   name: error-pipeline
-spec:
-  targets:
+description: Delivery pipeline across multiple environments
+serialPipeline:
+  stages:
     - targetId: dev
-      ...
+      target: projects/mlfsi-jupiter-apollo/locations/asia-southeast1/targets/dev
+      profiles: [dev]
     - targetId: qa
-      ...
+      target: projects/mlfsi-polaris-celestino/locations/asia-southeast1/targets/qa
+      profiles: [qa]
     - targetId: preprod
-      ...
-    - targetId: production
-      ...
+      target: projects/mlfsi-altair-phoenix/locations/asia-southeast1/targets/preprod
+      profiles: [preprod]
+    - targetId: prod
+      target: projects/mlfsi-astrid-taurus/locations/asia-southeast1/targets/prod
+      profiles: [prod]
