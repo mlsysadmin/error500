@@ -1,9 +1,9 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: qa
+  name: preprod
   labels:
-    environment: qa
+    environment: preprod
 description: running in altair-phoenix project
 run:
   location: asia-southeast1
