@@ -41,6 +41,27 @@ echo "   PREPROD: $PREPROD_PROJECT_NUMBER"
 echo "   PROD:    $PROD_PROJECT_NUMBER"
 echo ""
 
+# 🛡️ Validate that each YAML references the correct project ID
+echo "🔍 Validating target YAML project references..."
+
+if grep -q "$DEV_PROJECT" targets/qa-target.yaml; then
+  echo "❌ QA target YAML incorrectly references DEV ($DEV_PROJECT)."
+  exit 1
+fi
+
+if grep -q "$DEV_PROJECT" targets/preprod-target.yaml; then
+  echo "❌ Preprod target YAML incorrectly references DEV ($DEV_PROJECT)."
+  exit 1
+fi
+
+if grep -q "$DEV_PROJECT" targets/prod-target.yaml; then
+  echo "❌ Prod target YAML incorrectly references DEV ($DEV_PROJECT)."
+  exit 1
+fi
+
+echo "✅ YAML validation passed. No incorrect DEV project references found."
+echo ""
+
 # Function to apply target config
 apply_target() {
   local TARGET_NAME=$1
