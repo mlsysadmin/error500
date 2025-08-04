@@ -6,16 +6,39 @@ QA_PROJECT="mlfsi-polaris-celestino"
 PREPROD_PROJECT="mlfsi-altair-phoenix"
 PROD_PROJECT="mlfsi-astrid-taurus"
 
-# Get Apollo project number
-echo "Fetching Apollo project number..."
-DEV_PROJECT_NUMBER=$(gcloud projects describe "$DEV_PROJECT" --format="value(projectNumber)")
+echo "Fetching project numbers..."
 
+DEV_PROJECT_NUMBER=$(gcloud projects describe "$DEV_PROJECT" --format="value(projectNumber)")
+QA_PROJECT_NUMBER=$(gcloud projects describe "$QA_PROJECT" --format="value(projectNumber)")
+PREPROD_PROJECT_NUMBER=$(gcloud projects describe "$PREPROD_PROJECT" --format="value(projectNumber)")
+PROD_PROJECT_NUMBER=$(gcloud projects describe "$PROD_PROJECT" --format="value(projectNumber)")
+
+# Fail early if any project number is not found
 if [ -z "$DEV_PROJECT_NUMBER" ]; then
   echo "❌ Failed to get project number for $DEV_PROJECT. Exiting."
   exit 1
 fi
 
-echo "✅ Apollo project number is $DEV_PROJECT_NUMBER"
+if [ -z "$QA_PROJECT_NUMBER" ]; then
+  echo "❌ Failed to get project number for $QA_PROJECT. Exiting."
+  exit 1
+fi
+
+if [ -z "$PREPROD_PROJECT_NUMBER" ]; then
+  echo "❌ Failed to get project number for $PREPROD_PROJECT. Exiting."
+  exit 1
+fi
+
+if [ -z "$PROD_PROJECT_NUMBER" ]; then
+  echo "❌ Failed to get project number for $PROD_PROJECT. Exiting."
+  exit 1
+fi
+
+echo "✅ All project numbers fetched:"
+echo "   DEV:     $DEV_PROJECT_NUMBER"
+echo "   QA:      $QA_PROJECT_NUMBER"
+echo "   PREPROD: $PREPROD_PROJECT_NUMBER"
+echo "   PROD:    $PROD_PROJECT_NUMBER"
 echo ""
 
 # Function to apply target config
