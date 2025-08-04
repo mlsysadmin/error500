@@ -1,14 +1,10 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: preprod
-  annotations:
-    deploy.cloud.google.com/location: asia-southeast1  # Must go in annotations, not metadata.location
-spec:
-  run:
-    location: asia-southeast1  # Region where Cloud Run service will be deployed
-  executionConfigs:
-    - usages: [RENDER, DEPLOY]
-      serviceAccount: projects/mlfsi-altair-phoenix/serviceAccounts/id-59071425-mlloan-sa@mlfsi-altair-phoenix.iam.gserviceaccount.com
-      skaffoldConfigFilePath: skaffold.yaml
-      skaffoldProfiles: ["preprod"]
+  name: qa
+  labels:
+    environment: qa
+description: running in altair-phoenix project
+run:
+  location: asia-southeast1
+  serviceAccount: cloud-deploy-sa@mlfsi-polaris-celestino.iam.gserviceaccount.com
