@@ -1,10 +1,10 @@
+# qa-target.yaml (run in QA project)
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: qa
   labels:
     environment: qa
-description: running in polaris-celestino project
+description: mlfsi-polaris-celestino
 run:
-  location: asia-southeast1
-  serviceAccount: id-56080425-clouddeploy-sa@mlfsi-polaris-celestino.iam.gserviceaccount.com
+  location: projects/mlfsi-polaris-celestino/locations/asia-southeast1
