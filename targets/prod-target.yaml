@@ -2,13 +2,9 @@ apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: prod
-  annotations:
-    deploy.cloud.google.com/location: asia-southeast1  # Must go in annotations, not metadata.location
-spec:
-  run:
-    location: asia-southeast1  # Region where Cloud Run service will be deployed
-  executionConfigs:
-    - usages: [RENDER, DEPLOY]
-      serviceAccount: projects/mlfsi-astrid-taurus/serviceAccounts/789168607796-compute@developer.gserviceaccount.com
-      skaffoldConfigFilePath: skaffold.yaml
-      skaffoldProfiles: ["prod"]
+  labels:
+    environment: prod
+description: running in astrid-taurus project
+run:
+  location: asia-southeast1
+  serviceAccount: cloud-deploy-sa@mlfsi-polaris-celestino.iam.gserviceaccount.com
